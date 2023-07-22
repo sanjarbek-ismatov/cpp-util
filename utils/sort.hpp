@@ -14,4 +14,5 @@ private:
     vector<int> insertionSort();
     vector<int> quickSort();
     vector<int> mergeSort();
+    vector<int> quickSortFunction(vector<int> arr);
 };

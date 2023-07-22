@@ -1,5 +1,6 @@
 #include <utility>
 #include <iostream>
+#include <cmath>
 #include "sort.hpp"
 
 using namespace std;
@@ -31,7 +32,18 @@ vector<int> Sort::bubbleSort() {
     return _arr;
 }
 vector<int> Sort::selectionSort() {
-
+    for(int i = 0; i < _arr.size(); i++){
+        int min = i;
+        for(int j = i + 1; j < _arr.size(); j++){
+            if(_arr[min] > _arr[j]) min = j;
+        }
+        if(min != i){
+            int curr = _arr[i];
+            _arr[i] = _arr[min];
+            _arr[min] = curr;
+        }
+    }
+    return _arr;
 }
 vector<int> Sort::insertionSort() {
     for(int i = 1; i < _arr.size(); i++){
@@ -46,7 +58,26 @@ vector<int> Sort::insertionSort() {
     return _arr;
 }
 vector<int> Sort::quickSort() {
+    return quickSortFunction(_arr);
+}
+vector<int> Sort::quickSortFunction(vector<int> arr) {
+    if(arr.size() <= 1) return arr;
+    int pivotIndex = floor(arr.size() / 2);
+    vector<int> left;
+    vector<int> right;
 
+    for(int i = 0; i < arr.size(); i++){
+        if(i == pivotIndex) continue;
+        if(arr[i] < arr[pivotIndex]) left.push_back(arr[i]);
+        else right.push_back(arr[i]);
+    }
+    vector<int> leftSorted = quickSortFunction(left);
+    vector<int> rightSorted = quickSortFunction(right);
+    vector<int> merged;
+    merged.insert(merged.end(), leftSorted.begin(), leftSorted.end());
+    merged.push_back(arr[pivotIndex]);
+    merged.insert(merged.end(), rightSorted.begin(), rightSorted.end());
+    return merged;
 }
 vector<int> Sort::mergeSort() {
 

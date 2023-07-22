@@ -2,7 +2,7 @@
 #include <string>
 #include "utils/sort.hpp"
 int main(){
-    Sort sortUtils = Sort("insertion");
+    Sort sortUtils = Sort("quick");
     vector<int> unsortedArr = {5, 4, 3, 1, 2};
     vector<int> sortedArr = sortUtils.sort(unsortedArr);
     string value;
