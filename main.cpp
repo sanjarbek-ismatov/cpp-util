@@ -6,7 +6,7 @@
 using namespace std;
 int main() {
     vector < int > arr = {4, 4, 6, 2, 6, 7, 3, 1, 7, 8};
-    Search searchUtils("quick", "binary");
+    Search search_utils("quick", "binary");
     int target;
     string def = "[ ";
     for (int elem: arr) {
@@ -17,9 +17,9 @@ int main() {
     cout << "Current array: " << def << endl;
     cout << "Target: ";
     cin >> target;
-    int result = searchUtils.search(arr, target);
+    int result = search_utils.search(arr, target);
     string sorted = "[ ";
-    for (int elem: searchUtils.sorted_arr) {
+    for (int elem: search_utils.sorted_arr) {
         sorted += to_string(elem);
         sorted += " ";
     }

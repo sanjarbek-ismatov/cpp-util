@@ -8,15 +8,15 @@ Sort::Sort(string type): type(std::move(type)) {}
 
 vector < int > Sort::sort(vector < int > arr) {
     _arr = std::move(arr);
-    if (type == "bubble") return bubbleSort();
-    else if (type == "selection") return selectionSort();
-    else if (type == "insertion") return insertionSort();
+    if (type == "bubble") return bubble_sort();
+    else if (type == "selection") return selection_sort();
+    else if (type == "insertion") return insertion_sort();
     else if (type == "quick") return quickSort();
-    else if (type == "merge") return mergeSort();
+    else if (type == "merge") return merge_sort();
     return _arr;
 };
 
-vector < int > Sort::bubbleSort() {
+vector < int > Sort::bubble_sort() {
     bool swapped;
     do {
         swapped = false;
@@ -31,7 +31,7 @@ vector < int > Sort::bubbleSort() {
     } while (swapped);
     return _arr;
 }
-vector < int > Sort::selectionSort() {
+vector < int > Sort::selection_sort() {
     for (int i = 0; i < _arr.size(); i++) {
         int min = i;
         for (int j = i + 1; j < _arr.size(); j++) {
@@ -45,7 +45,7 @@ vector < int > Sort::selectionSort() {
     }
     return _arr;
 }
-vector < int > Sort::insertionSort() {
+vector < int > Sort::insertion_sort() {
     for (int i = 1; i < _arr.size(); i++) {
         int curr = _arr[i];
         int j = i - 1;
@@ -58,59 +58,59 @@ vector < int > Sort::insertionSort() {
     return _arr;
 }
 vector < int > Sort::quickSort() {
-    return quickSortFunction(_arr);
+    return quick_sort_function(_arr);
 }
-vector < int > Sort::quickSortFunction(vector < int > arr) {
+vector < int > Sort::quick_sort_function(vector < int > arr) {
     if (arr.size() <= 1) return arr;
-    int pivotIndex = floor(arr.size() / 2);
+    int pivot_index = floor(arr.size() / 2);
     vector < int > left;
     vector < int > right;
 
     for (int i = 0; i < arr.size(); i++) {
-        if (i == pivotIndex) continue;
-        if (arr[i] < arr[pivotIndex]) left.push_back(arr[i]);
+        if (i == pivot_index) continue;
+        if (arr[i] < arr[pivot_index]) left.push_back(arr[i]);
         else right.push_back(arr[i]);
     }
-    vector < int > leftSorted = quickSortFunction(left);
-    vector < int > rightSorted = quickSortFunction(right);
+    vector < int > left_sorted = quick_sort_function(left);
+    vector < int > right_sorted = quick_sort_function(right);
     vector < int > merged;
-    merged.insert(merged.end(), leftSorted.begin(), leftSorted.end());
-    merged.push_back(arr[pivotIndex]);
-    merged.insert(merged.end(), rightSorted.begin(), rightSorted.end());
+    merged.insert(merged.end(), left_sorted.begin(), left_sorted.end());
+    merged.push_back(arr[pivot_index]);
+    merged.insert(merged.end(), right_sorted.begin(), right_sorted.end());
     return merged;
 }
-vector < int > Sort::mergeSort() {
-    return mergeSortFunction(_arr);
+vector < int > Sort::merge_sort() {
+    return merge_sort_function(_arr);
 }
-vector < int > Sort::mergeSortFunction(vector < int > arr) {
+vector < int > Sort::merge_sort_function(vector < int > arr) {
     if (arr.size() <= 1) return arr;
     int mid = floor(arr.size() / 2);
     vector < int > left(arr.begin(), arr.begin() + mid);
     vector < int > right(arr.begin() + mid, arr.end());
-    vector < int > leftSort = mergeSortFunction(left);
-    vector < int > rightSort = mergeSortFunction(right);
-    return merge(leftSort, rightSort);
+    vector < int > left_sort = merge_sort_function(left);
+    vector < int > right_sort = merge_sort_function(right);
+    return merge(left_sort, right_sort);
 }
 vector < int > Sort::merge(vector < int > left, vector < int > right) {
     vector < int > merge;
-    int leftIndex = 0;
-    int rightIndex = 0;
-    while (leftIndex < left.size() && rightIndex < right.size()) {
-        if (left[leftIndex] >= right[rightIndex]) {
-            merge.push_back(right[rightIndex]);
-            rightIndex++;
+    int left_index = 0;
+    int right_index = 0;
+    while (left_index < left.size() && right_index < right.size()) {
+        if (left[left_index] >= right[right_index]) {
+            merge.push_back(right[right_index]);
+            right_index++;
         } else {
-            merge.push_back(left[leftIndex]);
-            leftIndex++;
+            merge.push_back(left[left_index]);
+            left_index++;
         }
     }
-    while (leftIndex < left.size()) {
-        merge.push_back(left[leftIndex]);
-        leftIndex++;
+    while (left_index < left.size()) {
+        merge.push_back(left[left_index]);
+        left_index++;
     }
-    while (rightIndex < right.size()) {
-        merge.push_back(right[rightIndex]);
-        rightIndex++;
+    while (right_index < right.size()) {
+        merge.push_back(right[right_index]);
+        right_index++;
     }
     return merge;
 }

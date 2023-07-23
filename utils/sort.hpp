@@ -9,12 +9,12 @@ public:
     vector<int> sort(vector<int> arr);
 private:
     vector<int> _arr;
-    vector<int> bubbleSort();
-    vector<int> selectionSort();
-    vector<int> insertionSort();
+    vector<int> bubble_sort();
+    vector<int> selection_sort();
+    vector<int> insertion_sort();
     vector<int> quickSort();
-    vector<int> mergeSort();
-    vector<int> quickSortFunction(vector<int> arr);
-    vector<int> mergeSortFunction(vector<int> arr);
+    vector<int> merge_sort();
+    vector<int> quick_sort_function(vector<int> arr);
+    vector<int> merge_sort_function(vector<int> arr);
     vector<int> merge(vector<int> left, vector<int> right);
 };
