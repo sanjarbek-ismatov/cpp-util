@@ -8,4 +8,4 @@ include_directories(utils)
 add_executable(cpp_util
         utils/sort.cpp
         utils/sort.hpp
-        main.cpp)
+        main.cpp utils/search.cpp utils/search.hpp)
