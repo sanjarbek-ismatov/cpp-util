@@ -13,8 +13,8 @@ public:
 private:
     std::string sort_type;
     std::string search_type;
-    int linear_search(vector<int> arr, int target);
-    int binary_search(vector<int> arr, int target);
+    int linear_search(std::vector<int> arr, int target);
+    int binary_search(std::vector<int> arr, int target);
 };
 
 #endif // SEARCH_HPP
