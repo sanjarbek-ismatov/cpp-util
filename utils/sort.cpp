@@ -80,5 +80,37 @@ vector<int> Sort::quickSortFunction(vector<int> arr) {
     return merged;
 }
 vector<int> Sort::mergeSort() {
-
+    return mergeSortFunction(_arr);
+}
+vector<int> Sort::mergeSortFunction(vector<int> arr) {
+    if(arr.size() <= 1) return arr;
+    int mid = floor(arr.size() / 2);
+    vector<int> left(arr.begin(), arr.begin() + mid);
+    vector<int> right(arr.begin() + mid, arr.end());
+    vector<int> leftSort = mergeSortFunction(left);
+    vector<int> rightSort = mergeSortFunction(right);
+    return merge(leftSort, rightSort);
+}
+vector<int> Sort::merge(vector<int> left, vector<int> right) {
+    vector<int> merge;
+    int leftIndex = 0;
+    int rightIndex = 0;
+    while(leftIndex < left.size() && rightIndex < right.size()){
+     if(left[leftIndex] >= right[rightIndex]){
+         merge.push_back(right[rightIndex]);
+         rightIndex++;
+     }else {
+         merge.push_back(left[leftIndex]);
+         leftIndex++;
+     }
+    }
+    while(leftIndex < left.size()){
+        merge.push_back(left[leftIndex]);
+        leftIndex++;
+    }
+    while(rightIndex < right.size()){
+        merge.push_back(right[rightIndex]);
+        rightIndex++;
+    }
+    return merge;
 }
